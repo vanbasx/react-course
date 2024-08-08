@@ -32,26 +32,30 @@ export default function App() {
     },
   ]);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [post, setPost] = useState({
+    title: "",
+    body: "",
+  });
 
   const addNewPost = (e) => {
     e.preventDefault();
-    console.log(title);
+    setPosts([...posts, { ...post, id: Date.now() }]);
+    setPost({ title: "", body: "" });
   };
 
   return (
     <div className="mx-auto max-w-screen-lg px-4 mt-5">
-      <form className="max-w-screen-sm">
+      <form>
         <div className="flex flex-col gap-3 mb-4">
           <MyInput
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={post.title}
+            onChange={(e) => setPost({ ...post, title: e.target.value })}
             type="text"
             placeholder="Post title"
           />
           <MyInput
-            value={description}
+            value={post.body}
+            onChange={(e) => setPost({ ...post, body: e.target.value })}
             type="text"
             placeholder="Post description"
           />
