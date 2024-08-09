@@ -1,12 +1,17 @@
 import PostItem from "./PostItem";
 
-export default function PostList({ posts, title }) {
+export default function PostList({ posts, title, remove }) {
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-6 text-center">{title}</h1>
+      <h1 className="mb-6 text-center text-4xl font-bold">{title}</h1>
       <div className="flex flex-col gap-4">
         {posts.map((post, index) => (
-          <PostItem number={index + 1} post={post} key={post.id} />
+          <PostItem
+            remove={remove}
+            number={index + 1}
+            post={post}
+            key={post.id}
+          />
         ))}
       </div>
     </div>
